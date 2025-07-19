@@ -8,8 +8,7 @@ module.exports.getAllArticle = async () => {
                 c.img AS img,
                 c.paragraph AS text
         FROM article AS a
-        JOIN article_content AS c
-        ON a.content_id = c.id`
+        JOIN article_content AS c ON a.content_id = c.id`
     );
 
     return data.rows;
@@ -23,8 +22,7 @@ module.exports.getArticle = async (id) => {
                 c.img AS img,
                 c.paragraph AS text
         FROM article AS a
-        JOIN article_content AS c
-        ON a.content_id = c.id
+        JOIN article_content AS c ON a.content_id = c.id
         WHERE a.id = $1`,
         [id]
     );

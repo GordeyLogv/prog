@@ -44,26 +44,38 @@ module.exports.searchPerson = async (email) => {
     return data.rows[0]
 };
 
-module.exports.saveRefreshToken = async (email, token) => {
-    const personId = await db.query(
-        `SELECT id FROM person WHERE email = $1`,
-        [email]
-    );
+// module.exports.saveRefreshToken = async (email, token) => {
+//     const personId = await db.query(
+//         `SELECT id FROM person WHERE email = $1`,
+//         [email]
+//     );
 
-    const validateToken = await db.query(
-        `SELECT token FROM person_token WHERE id = $1`,
-        [personId.rows[0].id]
-    );
+//     const id = personId.rows[0].id
 
-    if (validateToken.rows.length === 0) {
-        await db.query(
-            `INSERT INTO person_token (id, token) VALUES ($1, $2)`,
-            [personId.rows[0].id, token]
-        );
-    } else {
-        await db.query(
-            `UPDATE person_token set token = $1 WHERE id = $2`,
-            [token, personId.rows[0].id]
-        )
-    }
-}
+//     const validateToken = await db.query(
+//         `SELECT token FROM person_token WHERE id = $1`,
+//         [id]
+//     );
+
+//     if (validateToken.rows.length === 0) {
+//         await db.query(
+//             `INSERT INTO person_token (id, token) VALUES ($1, $2)`,
+//             [id, token]
+//         );
+
+//         await db.query(
+//             `UPDATE person set token_id = $1 WHERE id = $2`,
+//             [id, id]
+//         );
+//     } else {
+//         await db.query(
+//             `UPDATE person_token set token = $1 WHERE id = $2`,
+//             [token, id]
+//         );
+
+//         await db.query(
+//             'UPDATE person set token_id = $1 WHERE id = $2',
+//             [id, id]
+//         );
+//     };
+// };

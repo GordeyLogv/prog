@@ -19,19 +19,19 @@ module.exports.createAccessToken = (person) => {
             "age": person.age
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m"}
+        { expiresIn: "10d"}
     );
 };
 
-module.exports.createRefreshToken = (person) => {
-    return jwt.sign(
-        {
-            "id": person.id,
-            "username": person.username,
-            "role": person.role,
-            "age": person.age
-        },
-        process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: "30d" }
-    );
-}
+// module.exports.createRefreshToken = (person) => {
+//     return jwt.sign(
+//         {
+//             "id": person.id,
+//             "username": person.username,
+//             "role": person.role,
+//             "age": person.age
+//         },
+//         process.env.REFRESH_TOKEN_SECRET,
+//         { expiresIn: "30d" }
+//     );
+// }

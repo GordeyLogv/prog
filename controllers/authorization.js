@@ -1,14 +1,14 @@
 const {
     createNewPerson,
     searchDuplicateEmail,
-    searchPerson,
-    saveRefreshToken
+    searchPerson
+    // saveRefreshToken
 } = require('../DB/queries/authorization');
 const {
     hashPassword,
     comparePassword,
-    createAccessToken,
-    createRefreshToken
+    createAccessToken
+    // createRefreshToken
 } = require('../models/authorization');
 
 const getAuthHandler = (req, res) => {
@@ -46,11 +46,11 @@ const postAuthLoginHandler = async (req, res) => {
     if (!compare) return res.status(400).json('Не правильный пароль, попробуйте ещё раз');
 
     const accessToken = createAccessToken(foundPerson);
-    const refreshToken = createRefreshToken(foundPerson);
+    // const refreshToken = createRefreshToken(foundPerson);
 
-    await saveRefreshToken(foundPerson.email, refreshToken);
+    // await saveRefreshToken(foundPerson.email, refreshToken);
 
-    res.json(accessToken);
+    res.json({ accessToken });
 };
 
 module.exports = {
